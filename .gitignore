@@ -1,0 +1,72 @@
+# =============================================================================
+# Symbiotic Theme — .gitignore
+# Only track: theme, wc-ai-chatbot plugin, sqft-pricing plugin, and root docs
+# =============================================================================
+
+# ── WordPress Core ──────────────────────────────────────────────────────────
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/xmlrpc.php
+/index.php
+/license.txt
+/readme.html
+/router.php
+
+# ── WordPress Config & Secrets ──────────────────────────────────────────────
+wp-config.php
+wp-config-sample.php
+.htaccess
+
+# ── Database Dumps ──────────────────────────────────────────────────────────
+*.sql
+*.sql.gz
+
+# ── Uploads & Media ─────────────────────────────────────────────────────────
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/debug.log
+
+# ── wp-content root files ───────────────────────────────────────────────────
+wp-content/index.php
+
+# ── Other Themes (keep only symbiotic-theme) ────────────────────────────────
+wp-content/themes/index.php
+wp-content/themes/twentytwenty*/
+
+# ── Other Plugins (keep only wc-ai-chatbot and sqft-pricing) ───────────────
+wp-content/plugins/index.php
+wp-content/plugins/akismet/
+wp-content/plugins/hello.php
+wp-content/plugins/woocommerce/
+
+# ── Node Modules & Build Cache ──────────────────────────────────────────────
+node_modules/
+.vite/
+*.tsbuildinfo
+
+# ── OS Files ────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+
+# ── IDE / Editor ────────────────────────────────────────────────────────────
+.obsidian/
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ── Claude Code local settings ──────────────────────────────────────────────
+.claude/
+
+# ── Extracted data / working files ──────────────────────────────────────────
+axiom_extracted.json
+printing_product_calculation_summary.md
+
+# ── Environment Files ──────────────────────────────────────────────────────
+.env
+.env.*

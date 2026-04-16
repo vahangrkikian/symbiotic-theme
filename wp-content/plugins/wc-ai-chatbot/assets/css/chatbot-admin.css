@@ -1,0 +1,20 @@
+/* WC AI Chatbot — Admin settings styles */
+.wcaic-settings-wrap h2 {
+  font-size: 1.4em;
+  margin-bottom: 1em;
+}
+.wcaic-settings-wrap .form-table th {
+  width: 220px;
+  padding: 15px 10px;
+}
+.wcaic-settings-wrap .regular-text {
+  width: 340px;
+}
+.wcaic-api-notice {
+  background: #fff3cd;
+  border-left: 4px solid #f0ad4e;
+  padding: 10px 14px;
+  margin: 12px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 13px;
+}

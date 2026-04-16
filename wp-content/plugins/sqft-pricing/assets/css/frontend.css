@@ -1,0 +1,267 @@
+/**
+ * Sqft Pricing — Frontend Calculator Styles
+ * Axiomprint-inspired product configurator.
+ */
+
+/* ─── Calculator Container ───────────────────────────────────────────────── */
+.sqft-calculator {
+	width: 100%;
+	margin: 20px 0;
+}
+
+/* ─── Option Groups ──────────────────────────────────────────────────────── */
+.sqft-opt-group {
+	margin-bottom: 20px;
+}
+
+.sqft-opt-label {
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	color: #333;
+	margin-bottom: 8px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+/* ─── Dropdown ───────────────────────────────────────────────────────────── */
+.sqft-select {
+	width: 100%;
+	padding: 10px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	font-size: 14px;
+	background: #fff;
+	cursor: pointer;
+	transition: border-color 0.2s;
+}
+.sqft-select:hover { border-color: #9ca3af; }
+.sqft-select:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+
+/* ─── Radio Options ──────────────────────────────────────────────────────── */
+.sqft-opt-radios {
+	display: flex;
+	gap: 0;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.sqft-radio-option {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px 16px;
+	background: #fff;
+	border-right: 1px solid #d1d5db;
+	cursor: pointer;
+	transition: all 0.2s;
+	font-size: 13px;
+	text-align: center;
+}
+.sqft-radio-option:last-child { border-right: none; }
+.sqft-radio-option:hover { background: #f9fafb; }
+.sqft-radio-option.active { background: #eff6ff; color: #2563eb; font-weight: 600; border-color: #2563eb; }
+.sqft-radio-option input[type="radio"] { display: none; }
+.sqft-radio-img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
+
+/* ─── Card Selection ─────────────────────────────────────────────────────── */
+.sqft-opt-cards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+	gap: 10px;
+}
+
+.sqft-card {
+	border: 2px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 12px;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.2s;
+	background: #fff;
+	position: relative;
+}
+.sqft-card:hover { border-color: #9ca3af; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.sqft-card.active { border-color: #2563eb; background: #eff6ff; }
+.sqft-card.active::after {
+	content: '✓';
+	position: absolute;
+	top: 6px;
+	right: 8px;
+	width: 20px;
+	height: 20px;
+	background: #2563eb;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 11px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.sqft-card-img { margin-bottom: 8px; }
+.sqft-card-img img { width: 100%; height: 60px; object-fit: contain; border-radius: 4px; }
+.sqft-card-label { font-size: 12px; font-weight: 500; color: #374151; line-height: 1.3; }
+.sqft-card-price { font-size: 11px; color: #dc2626; font-weight: 600; margin-top: 4px; }
+
+/* ─── Pill Buttons ───────────────────────────────────────────────────────── */
+.sqft-opt-pills {
+	display: flex;
+	gap: 0;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.sqft-pill {
+	flex: 1;
+	padding: 10px 16px;
+	border: none;
+	border-right: 1px solid #d1d5db;
+	background: #fff;
+	font-size: 13px;
+	font-weight: 500;
+	color: #6b7280;
+	cursor: pointer;
+	transition: all 0.2s;
+	text-align: center;
+}
+.sqft-pill:last-child { border-right: none; }
+.sqft-pill:hover { background: #f9fafb; color: #374151; }
+.sqft-pill.active { background: #2563eb; color: #fff; font-weight: 600; }
+
+/* ─── Turnaround Buttons ─────────────────────────────────────────────────── */
+.sqft-opt-turnaround {
+	display: flex;
+	gap: 10px;
+	flex-wrap: wrap;
+}
+
+.sqft-turnaround-btn {
+	flex: 1;
+	min-width: 140px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	padding: 14px 16px;
+	border: 2px solid #e5e7eb;
+	border-radius: 10px;
+	background: #fff;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.sqft-turnaround-btn:hover { border-color: #9ca3af; }
+.sqft-turnaround-btn.active { border-color: #2563eb; background: #eff6ff; }
+
+.sqft-ta-label { font-size: 13px; font-weight: 600; color: #374151; }
+.sqft-ta-days { font-size: 11px; color: #9ca3af; }
+.sqft-ta-price { font-size: 15px; font-weight: 700; color: #2563eb; }
+.sqft-turnaround-btn.active .sqft-ta-label { color: #2563eb; }
+
+/* ─── Size Selector ──────────────────────────────────────────────────────── */
+.sqft-opt-size { display: flex; flex-direction: column; gap: 8px; }
+
+.sqft-custom-size {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 0;
+}
+.sqft-custom-size input {
+	width: 80px;
+	padding: 8px;
+	border: 1px solid #d1d5db;
+	border-radius: 6px;
+	font-size: 14px;
+	text-align: center;
+}
+.sqft-size-metric {
+	font-size: 13px;
+	color: #6b7280;
+}
+
+/* ─── Quantity Options ───────────────────────────────────────────────────── */
+.sqft-opt-quantity { max-width: 300px; }
+
+/* ─── Price Panel ────────────────────────────────────────────────────────── */
+.sqft-calc-price-panel {
+	position: sticky;
+	top: 32px;
+	margin-top: 24px;
+	padding: 20px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+}
+
+.sqft-price-total {
+	display: flex;
+	align-items: baseline;
+	gap: 8px;
+}
+.sqft-price-label {
+	font-size: 14px;
+	font-weight: 500;
+	color: #64748b;
+}
+.sqft-price-amount {
+	font-size: 28px;
+	font-weight: 700;
+	color: #1e293b;
+}
+
+.sqft-price-per-unit {
+	font-size: 13px;
+	color: #64748b;
+	margin-top: 4px;
+}
+
+.sqft-price-eta {
+	font-size: 13px;
+	color: #16a34a;
+	font-weight: 500;
+	margin-top: 8px;
+	padding-top: 8px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.sqft-no-price {
+	font-size: 14px;
+	color: #94a3b8;
+	font-style: italic;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+	.sqft-opt-radios,
+	.sqft-opt-pills {
+		flex-direction: column;
+	}
+	.sqft-radio-option,
+	.sqft-pill {
+		border-right: none;
+		border-bottom: 1px solid #d1d5db;
+	}
+	.sqft-radio-option:last-child,
+	.sqft-pill:last-child {
+		border-bottom: none;
+	}
+
+	.sqft-opt-cards {
+		grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+	}
+
+	.sqft-opt-turnaround {
+		flex-direction: column;
+	}
+	.sqft-turnaround-btn {
+		min-width: auto;
+	}
+
+	.sqft-price-amount {
+		font-size: 24px;
+	}
+}

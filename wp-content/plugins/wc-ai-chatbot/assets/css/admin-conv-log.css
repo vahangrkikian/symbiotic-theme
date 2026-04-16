@@ -1,0 +1,18 @@
+/* WC AI Chatbot — Conversation log styles */
+.wcaic-conv-log-wrap .wcaic-conv-table .wcaic-msg-col {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wcaic-conv-log-wrap .wcaic-session-col {
+  font-family: monospace;
+  font-size: 11px;
+}
+.wcaic-flagged {
+  color: #ef4444;
+  font-size: 16px;
+}
+.wcaic-conv-log-wrap .tablenav-pages {
+  float: right;
+}

@@ -1,0 +1,456 @@
+/* WC AI Chatbot — Widget Styles (300+ lines) */
+:root {
+  --wcaic-primary:      #2563eb;
+  --wcaic-primary-dark: #1d4ed8;
+  --wcaic-dark:         #0f0f13;
+  --wcaic-bg:           #ffffff;
+  --wcaic-surface:      #f9fafb;
+  --wcaic-text:         #1a1a2e;
+  --wcaic-text-muted:   #6b7280;
+  --wcaic-border:       rgba(0,0,0,0.08);
+  --wcaic-shadow:       0 20px 60px rgba(0,0,0,0.15);
+  --wcaic-radius:       16px;
+  --wcaic-font:         system-ui, -apple-system, sans-serif;
+}
+
+/* ===================== Toggle Button ===================== */
+.wcaic-toggle {
+  position: fixed;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--wcaic-primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999990;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s;
+}
+.wcaic-toggle.wcaic-pos-bottom-right { bottom: 24px; right: 24px; }
+.wcaic-toggle.wcaic-pos-bottom-left  { bottom: 24px; left: 24px; }
+.wcaic-toggle:hover { transform: scale(1.08); background: var(--wcaic-primary-dark); }
+.wcaic-toggle svg { width: 26px; height: 26px; fill: #fff; }
+
+/* Pulse ring */
+.wcaic-toggle::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--wcaic-primary);
+  opacity: 0;
+  animation: wcaic-pulse 2.5s ease-out infinite;
+}
+@keyframes wcaic-pulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Unread badge */
+.wcaic-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+}
+
+/* ===================== Chat Panel ===================== */
+.wcaic-panel {
+  position: fixed;
+  bottom: 90px;
+  width: min(440px, calc(100vw - 32px));
+  height: min(640px, calc(100vh - 120px));
+  background: var(--wcaic-bg);
+  border-radius: var(--wcaic-radius);
+  box-shadow: var(--wcaic-shadow);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999991;
+  border: 1px solid var(--wcaic-border);
+  font-family: var(--wcaic-font);
+  font-size: 14px;
+  color: var(--wcaic-text);
+  animation: wcaic-panel-in 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.wcaic-panel.wcaic-open { display: flex; }
+.wcaic-panel.wcaic-pos-bottom-right { right: 24px; }
+.wcaic-panel.wcaic-pos-bottom-left  { left: 24px; }
+
+@keyframes wcaic-panel-in {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+/* ===================== Header ===================== */
+.wcaic-header {
+  background: var(--wcaic-dark);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+.wcaic-header-info { display: flex; align-items: center; gap: 10px; }
+.wcaic-status-dot  { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+.wcaic-header-name { font-weight: 600; font-size: 14px; }
+.wcaic-header-sub  { font-size: 11px; opacity: 0.65; margin-top: 1px; }
+.wcaic-header-actions { display: flex; gap: 8px; }
+.wcaic-header-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s;
+}
+.wcaic-header-btn:hover { color: #fff; }
+.wcaic-header-btn svg { width: 18px; height: 18px; }
+
+/* ===================== Messages ===================== */
+.wcaic-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+.wcaic-messages::-webkit-scrollbar { width: 4px; }
+.wcaic-messages::-webkit-scrollbar-track { background: transparent; }
+.wcaic-messages::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+
+/* ===================== Bubbles ===================== */
+.wcaic-bubble {
+  max-width: 84%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.wcaic-bubble--user {
+  background: var(--wcaic-primary);
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.wcaic-bubble--bot {
+  background: var(--wcaic-surface);
+  color: var(--wcaic-text);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  border: 1px solid var(--wcaic-border);
+}
+.wcaic-bubble a { color: var(--wcaic-primary); text-decoration: underline; }
+.wcaic-bubble strong { font-weight: 600; }
+.wcaic-bubble code {
+  background: rgba(0,0,0,0.06);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* Streaming cursor */
+.wcaic-streaming::after {
+  content: '▋';
+  animation: wcaic-blink 1s step-start infinite;
+  margin-left: 2px;
+}
+@keyframes wcaic-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ===================== Typing Indicator ===================== */
+.wcaic-typing {
+  align-self: flex-start;
+  background: var(--wcaic-surface);
+  border: 1px solid var(--wcaic-border);
+  border-radius: 18px;
+  border-bottom-left-radius: 4px;
+  padding: 12px 16px;
+  display: none;
+  gap: 5px;
+}
+.wcaic-typing.wcaic-visible { display: flex; }
+.wcaic-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--wcaic-text-muted);
+  animation: wcaic-bounce 1.2s ease-in-out infinite;
+}
+.wcaic-typing span:nth-child(2) { animation-delay: 0.2s; }
+.wcaic-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes wcaic-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%            { transform: translateY(-8px); }
+}
+
+/* ===================== Quick Replies ===================== */
+.wcaic-quick-replies {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0 8px;
+  scrollbar-width: none;
+}
+.wcaic-quick-replies::-webkit-scrollbar { display: none; }
+.wcaic-quick-reply {
+  flex-shrink: 0;
+  background: transparent;
+  border: 1px solid var(--wcaic-primary);
+  color: var(--wcaic-primary);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.wcaic-quick-reply:hover { background: var(--wcaic-primary); color: #fff; }
+
+/* ===================== Welcome Buttons ===================== */
+.wcaic-welcome-section { margin-top: 10px; }
+.wcaic-welcome-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--wcaic-text-muted);
+  margin-bottom: 8px;
+}
+.wcaic-welcome-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.wcaic-welcome-btn {
+  background: var(--wcaic-surface);
+  border: 1px solid var(--wcaic-border);
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.wcaic-welcome-btn:hover { border-color: var(--wcaic-primary); background: rgba(37,99,235,0.05); }
+
+/* ===================== Product Grid / Carousel ===================== */
+.wcaic-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  width: 100%;
+}
+.wcaic-carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+}
+.wcaic-carousel::-webkit-scrollbar { display: none; }
+.wcaic-carousel-nav {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 6px;
+}
+.wcaic-nav-btn {
+  background: var(--wcaic-surface);
+  border: 1px solid var(--wcaic-border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.15s;
+}
+.wcaic-nav-btn:hover { background: rgba(0,0,0,0.07); }
+
+/* ===================== Product Card ===================== */
+.wcaic-product-card {
+  background: #fff;
+  border: 1px solid var(--wcaic-border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 170px;
+  transition: box-shadow 0.18s;
+}
+.wcaic-product-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+.wcaic-card-image {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--wcaic-surface);
+}
+.wcaic-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wcaic-sale-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+.wcaic-card-body { padding: 10px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.wcaic-brand {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--wcaic-text-muted);
+  font-weight: 600;
+}
+.wcaic-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.wcaic-price { font-size: 13px; font-weight: 700; margin-top: 2px; }
+.wcaic-price del { font-weight: 400; color: var(--wcaic-text-muted); font-size: 11px; margin-right: 4px; }
+.wcaic-sale-price { color: #ef4444; }
+.wcaic-stars { font-size: 11px; color: #f59e0b; }
+.wcaic-stars span { color: var(--wcaic-text-muted); }
+.wcaic-stock-badge { font-size: 11px; color: #ef4444; font-weight: 600; }
+.wcaic-card-actions { display: flex; gap: 6px; margin-top: auto; padding-top: 8px; }
+.wcaic-add-to-cart {
+  flex: 1;
+  background: var(--wcaic-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.wcaic-add-to-cart:hover:not(:disabled) { background: var(--wcaic-primary-dark); }
+.wcaic-add-to-cart:disabled { opacity: 0.5; cursor: not-allowed; }
+.wcaic-view-btn {
+  background: transparent;
+  border: 1px solid var(--wcaic-border);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: var(--wcaic-text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: border-color 0.15s;
+}
+.wcaic-view-btn:hover { border-color: var(--wcaic-primary); }
+
+/* ===================== Input Area ===================== */
+.wcaic-input-area {
+  padding: 12px 16px;
+  border-top: 1px solid var(--wcaic-border);
+  background: var(--wcaic-bg);
+  flex-shrink: 0;
+}
+.wcaic-hint { font-size: 11px; color: var(--wcaic-text-muted); margin-bottom: 8px; }
+.wcaic-input-row { display: flex; gap: 8px; align-items: flex-end; }
+.wcaic-textarea {
+  flex: 1;
+  border: 1px solid var(--wcaic-border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-family: var(--wcaic-font);
+  font-size: 13px;
+  resize: none;
+  line-height: 1.5;
+  max-height: 100px;
+  overflow-y: auto;
+  outline: none;
+  transition: border-color 0.15s;
+  color: var(--wcaic-text);
+  background: var(--wcaic-bg);
+}
+.wcaic-textarea:focus { border-color: var(--wcaic-primary); }
+.wcaic-textarea::placeholder { color: var(--wcaic-text-muted); }
+.wcaic-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--wcaic-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, opacity 0.15s;
+}
+.wcaic-send-btn:hover:not(:disabled) { background: var(--wcaic-primary-dark); }
+.wcaic-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.wcaic-send-btn svg { width: 18px; height: 18px; fill: #fff; }
+.wcaic-char-count { font-size: 10px; color: var(--wcaic-text-muted); text-align: right; margin-top: 4px; }
+
+/* Ask AI button on WC pages */
+.wcaic-ask-ai {
+  background: transparent;
+  border: 1px solid var(--wcaic-primary);
+  color: var(--wcaic-primary);
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.15s, color 0.15s;
+  margin-top: 8px;
+}
+.wcaic-ask-ai:hover { background: var(--wcaic-primary); color: #fff; }
+
+/* ===================== Mobile ===================== */
+@media (max-width: 480px) {
+  .wcaic-panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    bottom: 0;
+    right: 0;
+  }
+  .wcaic-carousel-nav { display: none; }
+  .wcaic-product-grid { grid-template-columns: 1fr; }
+  .wcaic-product-card { width: 100%; }
+}

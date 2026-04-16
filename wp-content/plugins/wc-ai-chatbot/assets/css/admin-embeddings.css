@@ -1,0 +1,24 @@
+/* WC AI Chatbot — Embeddings admin styles */
+.wcaic-embeddings-wrap .wcaic-index-status {
+  background: #f0f6fc;
+  border: 1px solid #c8d8e8;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 12px 0;
+}
+.wcaic-embeddings-wrap .wcaic-progress-bar {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.wcaic-embeddings-wrap .wcaic-progress-fill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+.wcaic-embeddings-wrap .button-hero {
+  margin-top: 8px;
+}
