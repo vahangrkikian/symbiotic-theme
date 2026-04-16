@@ -1,46 +1,23 @@
 # =============================================================================
 # Symbiotic Theme — .gitignore
-# Only track: theme, wc-ai-chatbot plugin, sqft-pricing plugin, and root docs
+# Full WordPress installation tracked. Only local/sensitive files excluded.
 # =============================================================================
 
-# ── WordPress Core ──────────────────────────────────────────────────────────
-/wp-admin/
-/wp-includes/
-/wp-*.php
-/xmlrpc.php
-/index.php
-/license.txt
-/readme.html
-/router.php
-
-# ── WordPress Config & Secrets ──────────────────────────────────────────────
+# ── Secrets ─────────────────────────────────────────────────────────────────
 wp-config.php
-wp-config-sample.php
 .htaccess
+.env
+.env.*
 
-# ── Database Dumps ──────────────────────────────────────────────────────────
-*.sql
-*.sql.gz
-
-# ── Uploads & Media ─────────────────────────────────────────────────────────
+# ── Uploads & User Media ───────────────────────────────────────────────────
 wp-content/uploads/
 wp-content/upgrade/
+
+# ── Logs ────────────────────────────────────────────────────────────────────
 wp-content/debug.log
+*.log
 
-# ── wp-content root files ───────────────────────────────────────────────────
-wp-content/index.php
-
-# ── Other Themes (keep only symbiotic-theme) ────────────────────────────────
-wp-content/themes/index.php
-wp-content/themes/twentytwenty*/
-
-# ── Other Plugins (keep only wc-ai-chatbot and sqft-pricing) ───────────────
-wp-content/plugins/index.php
-wp-content/plugins/akismet/
-wp-content/plugins/hello.php
-wp-content/plugins/woocommerce/
-
-# ── Node Modules & Build Cache ──────────────────────────────────────────────
+# ── Node Modules ────────────────────────────────────────────────────────────
 node_modules/
 .vite/
 *.tsbuildinfo
@@ -63,10 +40,6 @@ Desktop.ini
 # ── Claude Code local settings ──────────────────────────────────────────────
 .claude/
 
-# ── Extracted data / working files ──────────────────────────────────────────
+# ── Working files (not part of the project) ─────────────────────────────────
 axiom_extracted.json
 printing_product_calculation_summary.md
-
-# ── Environment Files ──────────────────────────────────────────────────────
-.env
-.env.*
